@@ -1,14 +1,19 @@
-<?php
-$host = 'localhost';
+ï»¿<?php
+// PHP'nin tarayÄ±cÄ±ya TÃ¼rkÃ§e harf gÃ¶ndermesini saÄŸlar
+header('Content-Type: text/html; charset=utf-8');
+
+$host = '127.0.0.1';
+$port = '3307'; // Sizin Ã¶zel portunuz
 $db   = 'haber_db';
 $user = 'root';
-$pass = ''; // XAMPP'ta þifre genelde boþtur
+$pass = ''; 
 $charset = 'utf8mb4';
 
 try {
-     $pdo = new PDO("mysql:host=$host;dbname=$db;charset=$charset", $user, $pass);
+     $pdo = new PDO("mysql:host=$host;port=$port;dbname=$db;charset=$charset", $user, $pass);
      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+     $pdo->exec("SET NAMES 'utf8mb4'");
 } catch (PDOException $e) {
-     die("Baðlantý baþarýsýz: " . $e->getMessage());
+     die("âš ï¸ VeritabanÄ± hatasÄ±: " . $e->getMessage());
 }
 ?>
